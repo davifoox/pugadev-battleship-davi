@@ -124,10 +124,16 @@ public class ShipController : Status
                     RechargSlowMotion();
                 }
 
+                if(GameManager.Instance.timerToEnd <= 0 && this.allStatus[healthLevel - 1].health > 0)
+                {
+                    EnebleMesh(false);
+                    GameManager.Instance.EndGame(true); //Ganhou
+                }
+
                 if (this.allStatus[healthLevel - 1].health <= 0)
                 {
                     EnebleMesh(false);
-                    GameManager.Instance.EndGame();
+                    GameManager.Instance.EndGame(false); //Perdeu
                 }
 
                 GameManager.Instance.currentPlayerHealth = this.allStatus[healthLevel - 1].health;

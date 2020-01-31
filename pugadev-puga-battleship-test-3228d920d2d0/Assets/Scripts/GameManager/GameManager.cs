@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [Header("PlayerState")]
     public int currentPlayerHealth;
     public int currentPlayerCoins;
+    public float timerToEnd = 5;
+    public bool playerWon;
 
     void Awake()
     {
@@ -30,14 +32,26 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButton("Cancel") && endGame)
             RestartGame();
+
+        timerToEnd -= Time.deltaTime;
     }
 
 
-    public void EndGame()
+    public void EndGame(bool won)
     {
         endGame = true;
         SpawnManager.Instance.spawnAble = false;
         gameTime = 0;
+
+        if (won)
+        {
+            playerWon = true;
+        }
+        else
+        {
+            playerWon = false;
+        }
+        
         SceneManager.LoadScene(2);
     }
 
@@ -51,5 +65,6 @@ public class GameManager : MonoBehaviour
         SpawnManager.Instance.DestroyerAllEnemy();
         SpawnManager.Instance.spawnAble = true;
         gameTime = 1;
+        timerToEnd = 5;
     }
 }
