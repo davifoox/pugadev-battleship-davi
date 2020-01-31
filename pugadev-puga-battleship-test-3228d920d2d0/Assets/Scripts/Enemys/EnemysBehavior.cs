@@ -218,6 +218,30 @@ public class EnemysBehavior : MonoBehaviour
                 status[level - 1].stunTime = 0;
 
                 break;
+
+            case EnemysType.NEW_ENEMY:
+                walk = true;
+                fire = true;
+                rechargFire = true;
+                meleeAttack = true;
+                rangeAttack = true;
+                suicide = true;
+                playerToTarget = true;
+                shield = true;
+                rechargShield = true;
+                stun = true;
+
+                status[level - 1].fireRate = 5;
+                status[level - 1].fireDamage = 1;
+                status[level - 1].fireRechargTime = 1;
+                status[level - 1].bulletsToRecharg = 2;
+                status[level - 1].meleeAttackTime = 1;
+                status[level - 1].meleeAttackDelay = 1;
+                status[level - 1].shieldResistence = 1;
+                status[level - 1].shieldRechargTime = 1;
+                status[level - 1].stunTime = 1;
+
+                break;
         }
     }
 
