@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "PlayerShipStatus", menuName = "SO/PlayerShip")]
 public class PlayerShipStatus : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Range(1, 3)] public int manaLevel;
+    [Range(1, 5)] public int speedLevel;
+    [Range(1, 5)] public int healthLevel;
+    [Range(1, 5)] public int attackLevel;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Range(1, 5)] public int megaBombLevel;
+    [Range(1, 5)] public int lazerLevel;
+    [Range(1, 5)] public int fireLevel;
 }

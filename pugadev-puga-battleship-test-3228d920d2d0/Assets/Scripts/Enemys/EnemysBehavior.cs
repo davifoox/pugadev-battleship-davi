@@ -231,7 +231,7 @@ public class EnemysBehavior : MonoBehaviour
                 rechargShield = true;
                 stun = true;
 
-                status[level - 1].fireRate = 5;
+                status[level - 1].fireRate = 3;
                 status[level - 1].fireDamage = 1;
                 status[level - 1].fireRechargTime = 1;
                 status[level - 1].bulletsToRecharg = 2;

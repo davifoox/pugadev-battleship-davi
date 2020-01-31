@@ -47,6 +47,8 @@ public class ShipController : Status
     float currentSpecialRechargTime;
     float currentslowMotionTime;
 
+    public PlayerShipStatus shipStatus;
+
 
     void Start()
     {
@@ -75,7 +77,7 @@ public class ShipController : Status
             }
             else
             {
-                gameObject.transform.Translate(Input.GetAxis("Horizontal") * this.allStatus[speedLevel - 1].speed * Time.deltaTime * GameManager.Instance.gameTime, 0, Input.GetAxis("Vertical") * this.allStatus[speedLevel - 1].speed * Time.deltaTime * GameManager.Instance.gameTime);
+                gameObject.transform.Translate(Input.GetAxis("Horizontal") * this.allStatus[shipStatus.speedLevel - 1].speed * Time.deltaTime * GameManager.Instance.gameTime, 0, Input.GetAxis("Vertical") * this.allStatus[shipStatus.speedLevel - 1].speed * Time.deltaTime * GameManager.Instance.gameTime);
 
                 if (inputPC)
                 {
@@ -124,19 +126,19 @@ public class ShipController : Status
                     RechargSlowMotion();
                 }
 
-                if(GameManager.Instance.timerToEnd <= 0 && this.allStatus[healthLevel - 1].health > 0)
+                if(GameManager.Instance.timerToEnd <= 0 && this.allStatus[shipStatus.healthLevel - 1].health > 0)
                 {
                     EnebleMesh(false);
                     GameManager.Instance.EndGame(true); //Ganhou
                 }
 
-                if (this.allStatus[healthLevel - 1].health <= 0)
+                if (this.allStatus[shipStatus.healthLevel - 1].health <= 0)
                 {
                     EnebleMesh(false);
                     GameManager.Instance.EndGame(false); //Perdeu
                 }
 
-                GameManager.Instance.currentPlayerHealth = this.allStatus[healthLevel - 1].health;
+                GameManager.Instance.currentPlayerHealth = this.allStatus[shipStatus.healthLevel - 1].health;
             }
         }
     }
@@ -144,7 +146,7 @@ public class ShipController : Status
 
     void SetDamage()
     {
-        damage = this.allStatus[attackLevel - 1].attack * 1;
+        damage = this.allStatus[shipStatus.attackLevel - 1].attack * 1;
     }
 
 
@@ -339,13 +341,13 @@ public class ShipController : Status
         switch (currentSpecialAble)
         {
             case SpecialType.BOMB:
-                specialRechargTime = bombSpecial.status[bombSpecial.megaBombLevel - 1].durationRecharg;
+                specialRechargTime = bombSpecial.status[shipStatus.megaBombLevel - 1].durationRecharg;
                 break;
             case SpecialType.LAZER:
-                specialRechargTime = lazerSpecial.status[lazerSpecial.lazerLevel - 1].durationRecharg;
+                specialRechargTime = lazerSpecial.status[shipStatus.lazerLevel - 1].durationRecharg;
                 break;
             case SpecialType.FIRE:
-                specialRechargTime = fireSpecial.status[fireSpecial.fireLevel - 1].durationRecharg;
+                specialRechargTime = fireSpecial.status[shipStatus.fireLevel - 1].durationRecharg;
                 break;
         }
 
@@ -353,7 +355,7 @@ public class ShipController : Status
         fireSpecial.gameObject.SetActive(false);
 
         currentSpecialRechargTime = specialRechargTime;
-        currentManaToSpecial = mana[manaLevel].ManaTotal;
+        currentManaToSpecial = mana[shipStatus.manaLevel].ManaTotal;
     }
 
 
@@ -362,29 +364,29 @@ public class ShipController : Status
         switch (currentSpecialAble)
         {
             case SpecialType.BOMB:
-                if (currentManaToSpecial >= bombSpecial.status[bombSpecial.megaBombLevel - 1].manaCost)
+                if (currentManaToSpecial >= bombSpecial.status[shipStatus.megaBombLevel - 1].manaCost)
                 {
                     Instantiate(bombSpecial, this.transform.position, Quaternion.identity);
                     currentSpecialRechargTime = 0;
-                    currentManaToSpecial -= bombSpecial.status[bombSpecial.megaBombLevel - 1].manaCost;
+                    currentManaToSpecial -= bombSpecial.status[shipStatus.megaBombLevel - 1].manaCost;
                 }
                 break;
             case SpecialType.LAZER:
-                if (currentManaToSpecial >= lazerSpecial.status[lazerSpecial.lazerLevel - 1].manaCost)
+                if (currentManaToSpecial >= lazerSpecial.status[shipStatus.lazerLevel - 1].manaCost)
                 {
                     lazerSpecial.gameObject.SetActive(true);
                     currentSpecialRechargTime = 0;
                     lazerSpecial.currentDuration = 0;
-                    currentManaToSpecial -= lazerSpecial.status[lazerSpecial.lazerLevel - 1].manaCost;
+                    currentManaToSpecial -= lazerSpecial.status[shipStatus.lazerLevel - 1].manaCost;
                 }
                 break;
             case SpecialType.FIRE:
-                if (currentManaToSpecial >= fireSpecial.status[fireSpecial.fireLevel - 1].manaCost)
+                if (currentManaToSpecial >= fireSpecial.status[shipStatus.fireLevel - 1].manaCost)
                 {
                     fireSpecial.gameObject.SetActive(true);
                     fireSpecial.currentDuration = 0;
                     currentSpecialRechargTime = 0;
-                    currentManaToSpecial -= fireSpecial.status[fireSpecial.fireLevel - 1].manaCost;
+                    currentManaToSpecial -= fireSpecial.status[shipStatus.fireLevel - 1].manaCost;
                 }
                 break;
         }
