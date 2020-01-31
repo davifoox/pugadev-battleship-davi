@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerShipStatus", menuName = "SO/PlayerShip")]
+[CreateAssetMenu(fileName = "PlayerShipStatus", menuName = "ScriptableObject/PlayerShip")]
 public class PlayerShipStatus : ScriptableObject
 {
     [Range(1, 3)] public int manaLevel;

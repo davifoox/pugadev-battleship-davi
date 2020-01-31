@@ -22,6 +22,14 @@ public class EnemysBehavior : MonoBehaviour
     protected float currentRechargTime, currentShieldRechargTime, currentMelleAttackDelay, currentMeleeAttackTime, currentFireDelayTime, fireDelayTime;
     protected bool walk, fire, rechargFire, meleeAttack, rangeAttack, suicide, playerToTarget, shield, rechargShield, stun;
 
+    public EnemyShipStatus[] shipLevels = new EnemyShipStatus[5];
+    public EnemyShipStatus shipStatus;
+
+    private void Start()
+    {
+        shipStatus = shipLevels[PlayerPrefs.GetInt("EnemyLevel") - 1];
+        level = shipStatus.enemyLevel;
+    }
 
     protected void StartStatus()
     {
