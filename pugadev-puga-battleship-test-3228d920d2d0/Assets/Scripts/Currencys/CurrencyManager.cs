@@ -25,5 +25,6 @@ public class CurrencyManager : MonoBehaviour
     public void AddCurrency(int valueToAdd)
     {
         totalCurrencys += valueToAdd;
+        GameManager.Instance.currentPlayerCoins = totalCurrencys;
     }
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("PlayerState")]
     public int currentPlayerHealth;
+    public int currentPlayerCoins;
 
     void Awake()
     {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetButton("Cancel") && endGame)
-            RestatGame();
+            RestartGame();
     }
 
 
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void RestatGame()
+    void RestartGame()
     {
         endGame = false;
         ship.transform.position = new Vector3(pivotToRestart.position.x, ship.transform.position.y, pivotToRestart.position.z);
