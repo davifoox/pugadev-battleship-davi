@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Text playerHealth;
 
     // Update is called once per frame
     void Update()
     {
-        
+        playerHealth.text = "Health: " + GameManager.Instance.currentPlayerHealth.ToString();
     }
 }

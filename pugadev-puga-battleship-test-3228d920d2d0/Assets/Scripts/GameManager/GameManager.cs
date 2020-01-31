@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float gameTime = 1;
     [HideInInspector] public bool endGame;
 
+
+    [Header("PlayerState")]
+    public int currentPlayerHealth;
 
     void Awake()
     {
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
         endGame = true;
         SpawnManager.Instance.spawnAble = false;
         gameTime = 0;
+        SceneManager.LoadScene(2);
     }
 
 

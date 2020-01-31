@@ -129,6 +129,8 @@ public class ShipController : Status
                     EnebleMesh(false);
                     GameManager.Instance.EndGame();
                 }
+
+                GameManager.Instance.currentPlayerHealth = this.allStatus[healthLevel - 1].health;
             }
         }
     }
