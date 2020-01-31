@@ -7,6 +7,8 @@ public class PlayerSavedData : MonoBehaviour
 {
 
     public Text coinsText;
+    public Text playerLevelText;
+
 
     void Start()
     {
@@ -16,6 +18,29 @@ public class PlayerSavedData : MonoBehaviour
         }
 
         coinsText.text = "Coins: " + PlayerPrefs.GetInt("CoinsTotal").ToString();
+
+        if (!PlayerPrefs.HasKey("PlayerLevel"))
+        {
+            PlayerPrefs.SetInt("PlayerLevel", 5);
+        }
+
+        playerLevelText.text = playerLevelText.text = "Player Level: " + PlayerPrefs.GetInt("PlayerLevel").ToString();
     }
 
+    public void IncreasePlayerLevelButton()
+    {
+        if (PlayerPrefs.GetInt("PlayerLevel") < 5)
+        {
+            PlayerPrefs.SetInt("PlayerLevel", PlayerPrefs.GetInt("PlayerLevel") + 1);
+            playerLevelText.text = "Player Level: " + PlayerPrefs.GetInt("PlayerLevel").ToString();
+        }
+    }
+    public void DecreasePlayerLevelButton()
+    {
+        if (PlayerPrefs.GetInt("PlayerLevel") > 1)
+        {
+            PlayerPrefs.SetInt("PlayerLevel", PlayerPrefs.GetInt("PlayerLevel") - 1);
+            playerLevelText.text = "Player Level: " + PlayerPrefs.GetInt("PlayerLevel").ToString();
+        }
+    }
 }

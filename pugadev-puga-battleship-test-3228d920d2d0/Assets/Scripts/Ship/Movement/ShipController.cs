@@ -47,11 +47,13 @@ public class ShipController : Status
     float currentSpecialRechargTime;
     float currentslowMotionTime;
 
+    public PlayerShipStatus[] shipLevels = new PlayerShipStatus[5];
     public PlayerShipStatus shipStatus;
 
 
     void Start()
     {
+        shipStatus = shipLevels[PlayerPrefs.GetInt("PlayerLevel") -1];
         SetShootRate();
         SetDamage();
         SetCurrentSecondaryCannon(mySecondaryCannonType);
