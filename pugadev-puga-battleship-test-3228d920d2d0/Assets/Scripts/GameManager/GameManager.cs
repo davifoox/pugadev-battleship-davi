@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        DontDestroyOnLoad(instance.gameObject);
     }
 
 
@@ -33,7 +34,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetButton("Cancel") && endGame)
             RestartGame();
 
-        timerToEnd -= Time.deltaTime;
+        if (!endGame)
+        {
+            timerToEnd -= Time.deltaTime;
+            if (timerToEnd < 0) { timerToEnd = 0; }
+        }
     }
 
 
@@ -66,5 +71,6 @@ public class GameManager : MonoBehaviour
         SpawnManager.Instance.spawnAble = true;
         gameTime = 1;
         timerToEnd = 5;
+        SceneManager.LoadScene(1);
     }
 }

@@ -13,6 +13,6 @@ public class CanvasUI : MonoBehaviour
     {
         playerHealth.text = "Health: " + GameManager.Instance.currentPlayerHealth.ToString();
         playerCoins.text = "Coins: " + GameManager.Instance.currentPlayerCoins.ToString();
-        timeLeft.text = "Time Left: " + GameManager.Instance.timerToEnd.ToString();
+        timeLeft.text = "Time Left: " + Mathf.FloorToInt(GameManager.Instance.timerToEnd).ToString();
     }
 }
