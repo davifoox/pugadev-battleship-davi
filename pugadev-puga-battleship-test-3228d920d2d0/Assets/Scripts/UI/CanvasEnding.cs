@@ -14,6 +14,7 @@ public class CanvasEnding : MonoBehaviour
         {
             endingMessage.text = "WON";
             coinsNumber.text = "Coins: " + GameManager.Instance.currentPlayerCoins.ToString();
+            PlayerPrefs.SetInt("CoinsTotal", PlayerPrefs.GetInt("CoinsTotal") + GameManager.Instance.currentPlayerCoins);
         }
         else
         {
