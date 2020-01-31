@@ -54,6 +54,7 @@ public class ShipController : Status
     void Start()
     {
         shipStatus = shipLevels[PlayerPrefs.GetInt("PlayerLevel") -1];
+        this.healthLevel = shipStatus.healthLevel;
         SetShootRate();
         SetDamage();
         SetCurrentSecondaryCannon(mySecondaryCannonType);
@@ -128,19 +129,19 @@ public class ShipController : Status
                     RechargSlowMotion();
                 }
 
-                if(GameManager.Instance.timerToEnd <= 0 && this.allStatus[shipStatus.healthLevel - 1].health > 0)
+                if(GameManager.Instance.timerToEnd <= 0 && this.allStatus[this.healthLevel - 1].health > 0)
                 {
                     EnebleMesh(false);
                     GameManager.Instance.EndGame(true); //Ganhou
                 }
-
-                if (this.allStatus[shipStatus.healthLevel - 1].health <= 0)
+                
+                if (this.allStatus[this.healthLevel - 1].health <= 0)
                 {
                     EnebleMesh(false);
                     GameManager.Instance.EndGame(false); //Perdeu
                 }
 
-                GameManager.Instance.currentPlayerHealth = this.allStatus[shipStatus.healthLevel - 1].health;
+                GameManager.Instance.currentPlayerHealth = this.allStatus[this.healthLevel - 1].health;
             }
         }
     }
